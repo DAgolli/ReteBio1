@@ -11,7 +11,7 @@ const Profile = () => {
         <div className="profile">
             {
                 profile.loading 
-                ?  <img className="d-block mx-auto my-4" src={LoadIcon} alt="loading" />
+                ? <img className="d-block mx-auto my-4" src={LoadIcon} alt="loading" />
                 : <Info />
 
             }
