@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import { checkImage } from '../../utils/imageUpload'
+import { updateProfileUser } from '../../redux/actions/profileAction'
 
 
 const EditProfile = ({setOnEdit}) => {
@@ -35,6 +36,12 @@ const EditProfile = ({setOnEdit}) => {
         setUserData({ ...userData, [name]: value})
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        dispatch(updateProfileUser({userData, avatar, auth}))
+        setOnEdit(false)
+    }
+
     return (
         <div className="edit_profile">
             <button className="btn btn-danger btn-close"
@@ -42,7 +49,7 @@ const EditProfile = ({setOnEdit}) => {
                  Close 
             </button>
             
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="info_avatar">
                     <img src={avatar ? URL.createObjectURL(avatar) : auth.user.avatar} 
                     alt="avatar" style={{filter: theme ? 'invert(1)' : 'invert(0)'}} />

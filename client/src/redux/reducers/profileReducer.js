@@ -1,5 +1,5 @@
 import { PROFILE_TYPES } from '../actions/profileAction'
-//import { EditData } from '../actions/globalTypes'
+import { EditData } from '../actions/globalTypes'
 
 const initialState = {
     loading: false,
@@ -19,17 +19,17 @@ switch (action.type){
             ...state,
             users: [...state.users, action.payload.user]
         };
-    // case PROFILE_TYPES.FOLLOW:
-    //     console.log(action.payload)
-    //     return {
-    //         ...state,
-    //         users: EditData(state.users, action.payload._id, action.payload)
-    //     };
-    //     case PROFILE_TYPES.UNFOLLOW:
-    //     return {
-    //         ...state,
-    //         users: EditData(state.users, action.payload._id, action.payload)
-    //     };
+    case PROFILE_TYPES.FOLLOW:
+        console.log(action.payload)
+        return {
+            ...state,
+            users: EditData(state.users, action.payload._id, action.payload)
+        };
+        case PROFILE_TYPES.UNFOLLOW:
+        return {
+            ...state,
+            users: EditData(state.users, action.payload._id, action.payload)
+        };
     default:
         return state;
     }
