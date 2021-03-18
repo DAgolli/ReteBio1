@@ -37,7 +37,6 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     return (
         <div>
-            <video src='/videos/video-5.mp4' className={classes.video} autoPlay loop muted />
             
             <form noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Grid className={classes.grid} container justify="center">
