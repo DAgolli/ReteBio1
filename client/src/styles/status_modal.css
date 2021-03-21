@@ -25,12 +25,11 @@
     transform: translateY(-13px);
 
 }
-.status_header span
-{
-font-size: 2rem;
-font-weight: 900;
-cursor:pointer;
-transform: translateY(-5px);
+.status_header span{
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transform: translateY(-5px);
 }
 .status_body textarea{
     width: 100%;
@@ -45,7 +44,7 @@ transform: translateY(-5px);
     justify-content: center;
     margin:10px 0 ;
 }
-.status_body .input_images  i{
+.status_body .input_images i{
     font-size: 2rem;
     cursor: pointer;
 }

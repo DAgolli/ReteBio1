@@ -7,6 +7,7 @@
     z-index: 2;
     box-shadow: 0 0 10px #ddd;
     background: #f8f9fa;
+    border: 1px solid rgb(0, 0, 0, .125);
 }
 
 .header .navbar {
@@ -14,9 +15,8 @@
     height: 100%;
 }
 
-.header .logo h1 {
+.header .logo h1{
     font-size: 2rem;
-
 }
 
 /*----------header-menu-------*/
@@ -24,7 +24,7 @@
     opacity: 0.5;
 }
 
-.header .menu li.active {
+.header .menu li .active {
     opacity: 1;
 }
 
@@ -32,13 +32,13 @@
     font-size: 30px;
 }
 
-.header.menu .dropdown-menu {
+.header .menu .dropdown-menu {
     position: absolute;
     left: inherit;
     right: 0;
 }
 
-.header.menu label {
+.header .menu label {
     cursor: pointer;
 }
 
@@ -110,6 +110,7 @@
         box-shadow: 0 0 10px #ddd;
         z-index: 2;
         background: #f8f9fa;
+        border: 1px solid rgb(0, 0, 0, .125);
     }
     .header .menu .navbar-nav{
         display: flex;

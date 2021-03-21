@@ -59,5 +59,12 @@
 
   /* --------- Home ---------*/
   @import url("./home.css");
+
   /* --------- Status_modal ---------*/
   @import url("./status_modal.css");
+
+  .mode{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
