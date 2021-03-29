@@ -3,6 +3,7 @@ import { EditData } from '../actions/globalTypes'
 
 const initialState = {
     loading: false,
+    ids: [],
     users: [],
     posts: []
 }
@@ -20,15 +21,24 @@ switch (action.type){
             users: [...state.users, action.payload.user]
         };
     case PROFILE_TYPES.FOLLOW:
-        console.log(action.payload)
         return {
             ...state,
             users: EditData(state.users, action.payload._id, action.payload)
         };
-        case PROFILE_TYPES.UNFOLLOW:
+    case PROFILE_TYPES.UNFOLLOW:
         return {
             ...state,
             users: EditData(state.users, action.payload._id, action.payload)
+        };
+    case PROFILE_TYPES.GET_ID:
+        return {
+            ...state,
+            ids: [...state.ids, action.payload]
+        };
+    case PROFILE_TYPES.GET_POSTS:
+        return {
+            ...state,
+            posts: [...state.posts, action.payload]
         };
     default:
         return state;
