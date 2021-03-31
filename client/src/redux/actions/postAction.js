@@ -1,7 +1,6 @@
 import { GLOBALTYPES } from './globalTypes'
 import { imageUpload } from '../../utils/imageUpload'
 import { postDataAPI, getDataAPI, patchDataAPI } from '../../utils/fetchData'
-import detailPostReducer from '../reducers/detailPostReducer'
 
 export const POST_TYPES = {
     CREATE_POST: 'CREATE_POST',
@@ -40,7 +39,7 @@ export const getPosts = (token) => async (dispatch) => {
         
         dispatch({ 
             type: POST_TYPES.GET_POSTS, 
-            payload: res.data 
+            payload: {...res.data, page: 2}
         })
 
         dispatch({ type: POST_TYPES.LOADING_POST, payload: false })
