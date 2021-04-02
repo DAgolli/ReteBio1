@@ -1,4 +1,5 @@
 const Posts = require('../models/postModel')
+const Comments = require('../models/commentModel')
 
 class APIfeatures {
     constructor(query, queryString){
@@ -93,9 +94,11 @@ const postCtrl = {
             const post = await Posts.find({_id: req.params.id, likes: req.user._id})
             if(post.length > 0) return res.status(400).json({msg: "You liked this post."})
 
-            await Posts.findOneAndUpdate({_id: req.params.id}, {
+            const like = await Posts.findOneAndUpdate({_id: req.params.id}, {
                 $push: {likes: req.user._id}
             }, {new: true})
+
+            if(!like) return res.status(400).json({msg: 'This post does not exist.'})
 
             res.json({msg: 'Liked Post!'})
 
@@ -106,9 +109,11 @@ const postCtrl = {
     unLikePost: async (req, res) => {
         try {
             
-            await Posts.findOneAndUpdate({_id: req.params.id}, {
+            const like = await Posts.findOneAndUpdate({_id: req.params.id}, {
                 $pull: {likes: req.user._id}
             }, {new: true})
+
+            if(!like) return res.status(400).json({msg: 'This post does not exist.'})
 
             res.json({msg: 'UnLiked Post!'})
 
@@ -142,6 +147,8 @@ const postCtrl = {
                 }
             })
 
+            if(!post) return res.status(400).json({msg: 'This post does not exist.'})
+
             res.json({post})
             
         } catch (err) {
@@ -165,7 +172,18 @@ const postCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }
+    },
+    deletePost: async (req, res) => {
+        try {
+            const post = await Posts.findOneAndDelete({_id: req.params.id, user: req.user._id})
+            await Comments.deleteMany({_id: {$in: post.commnets}})
+
+            res.json({msg: 'Deleted Post!'})
+            
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
 }
 
 module.exports = postCtrl
