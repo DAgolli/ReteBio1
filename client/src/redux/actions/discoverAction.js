@@ -18,9 +18,6 @@ export const getDiscoverPosts = (token) => async (dispatch) => {
 
         
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg} })
     }
 }

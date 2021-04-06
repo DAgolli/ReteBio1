@@ -24,7 +24,7 @@ const userCtrl={
         }
     },
 
-    updateUser: async (req,res)=>{
+    updateUser: async (req, res)=>{
         try {
             const{avatar, fullname, mobile, address, story, website, gender}= req.body
             if(!fullname)return res.status(400).json({msg:"Please add your full name."})
@@ -40,7 +40,7 @@ const userCtrl={
         }
     },
 
-    follow: async (req,res)=>{
+    follow: async (req, res)=>{
         try {
             const user = await Users.find({_id: req.params.id, followers: req.user._id})
             if(user.length > 0) return res.status(500).json({msg: "You followed this user."})
@@ -60,7 +60,7 @@ const userCtrl={
         }
     },
 
-    unfollow: async (req,res)=>{
+    unfollow: async (req, res)=>{
         try {
             
             await Users.findOneAndUpdate({_id: req.params.id}, {
@@ -75,6 +75,29 @@ const userCtrl={
 
         } catch (err) {
             return res.status(500).json({msg:err.message})
+        }
+    },
+
+    suggestionsUser: async (req, res)=>{
+        try {
+            const newArr = [...req.user.following, req.user._id]
+
+            const num = req.query.num || 10
+
+            const users = await Users.aggregate([
+                { $match: { _id: { $nin: newArr} } },
+                { $sample: { size: Number(num) } },
+                { $lookup: { from: 'users', localField: 'followers', foreignField: '_id', as: 'followers' } },
+                { $lookup: { from: 'users', localField: 'following', foreignField: '_id', as: 'following' } },
+            ]).project("-password")
+
+            return res.json({
+                users,
+                result: users.length
+            })
+
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
         }
     },
 }
