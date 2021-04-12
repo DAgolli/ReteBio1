@@ -98,7 +98,7 @@ const authCtrl = {
             jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, async(err, result) => {
                 if(err) return res.status(400).json({msg: "Please login now."})
 
-                console.log(result)
+                // console.log(result)
                 const user = await Users.findById(result.id).select("-password")
                 .populate('followers following', '-password')
 
