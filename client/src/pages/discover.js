@@ -29,12 +29,12 @@ const Discover = () => {
         <div>
             {
                 discover.loading
-                ? <img src={LoadIcon} className="d-block mx-auto my-4" alt="" />
+                ? <img src={LoadIcon} alt="loading" className="d-block mx-auto my-4" />
                 : <PostThumb posts={discover.posts} result={discover.result} />
             }
 
             {
-                load && <img src={LoadIcon} className="d-block mx-auto" alt="" />
+                load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
                 
             }
 
