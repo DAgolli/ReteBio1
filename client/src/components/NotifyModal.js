@@ -43,7 +43,7 @@ const NotifyModal = () => {
                                         <strong className="mr-1">{msg.user.username}</strong>
                                         <span>{msg.text}</span>
                                     </div>
-                                    {msg.content && <small>{msg.content.slice(0.20)}...</small>}
+                                    {msg.content && <small>{msg.content.slice(0,20)}...</small>}
                                 </div>
                                 <div style={{width: '30px'}}>
                                     {msg.image && <Avatar src={msg.image} size="medium-avatar" />}
