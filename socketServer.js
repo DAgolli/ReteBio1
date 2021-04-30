@@ -65,7 +65,7 @@ const SocketServer = (socket) => {
     })
 
     // unFollow
-    socket.on('unFollow', msg => {
+    socket.on('unFollow', newUser => {
         const user = users.find(user => user.id === newUser._id)
         user && socket.to(`${user.socketId}`).emit('unFollowToClient', newUser)
         
