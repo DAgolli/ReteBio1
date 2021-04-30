@@ -8,7 +8,7 @@ import { isReadNotify, NOTIFY_TYPES, deleteAllNotifies } from '../redux/actions/
 
 
 const NotifyModal = () => {
-    const { auth, notify } = useSelector(state => state)
+    const { auth, notify, theme } = useSelector(state => state)
     const dispatch = useDispatch()
 
     const handleIsRead = (msg) => {
@@ -59,7 +59,11 @@ const NotifyModal = () => {
                             onClick={() => handleIsRead(msg)} >
                                 <Avatar src={msg.user.avatar} size="big-avatar" />
 
-                                <div className="mx-1 flex-fill">
+                                <div className="mx-1 flex-fill" 
+                                style={{
+                                    filter: theme ? 'invert(1)' : 'invert(0)',
+                                    color: theme ? 'white' : '#111'
+                                }}>
                                     <div>
                                         <strong className="mr-1">{msg.user.username}</strong>
                                         <span>{msg.text}</span>
