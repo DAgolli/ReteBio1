@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import UserCard from '../UserCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDataAPI} from '../../utils/fetchData'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import { useHistory, useParams } from 'react-router-dom'
-import { addUser } from '../../redux/actions/messageAction'
+import { addUser, getConversations } from '../../redux/actions/messageAction'
 
 
 const LeftSide = () => {
@@ -43,6 +43,11 @@ const LeftSide = () => {
         if(id === user._id) return 'active';
         return ''
     }
+
+    useEffect(() => {
+        if(message.firstLoad) return;
+        dispatch(getConversations({auth}))
+    }, [dispatch, auth, message.firstLoad])
     
     return (
         <>
@@ -71,7 +76,7 @@ const LeftSide = () => {
                             message.users.map(user => (
                                 <div key={user._id} className={`message_user ${isActive(user)}`}
                                 onClick={() => handleAddUser(user)}>
-                                    <UserCard user={user}>
+                                    <UserCard user={user} msg={true}>
                                         <i className="fas fa-circle" />
                                     </UserCard>
                                 </div>

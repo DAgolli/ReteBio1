@@ -167,7 +167,6 @@ export const getPost = ({detailPost, id, auth}) => async (dispatch) => {
 export const deletePost = ({post, auth, socket}) => async (dispatch) => {
     dispatch({type: POST_TYPES.DELETE_POST, payload: post })
     
-
     try {
         const res = await deleteDataAPI(`post/${post._id}`, auth.token)
 
