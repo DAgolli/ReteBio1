@@ -11,5 +11,7 @@ router.get('/message/:id', auth, messageCtrl.getMessages)
 
 router.delete('/message/:id', auth, messageCtrl.deleteMessages)
 
+router.delete('/conversation/:id', auth, messageCtrl.deleteConversation)
+
 
 module.exports = router
