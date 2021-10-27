@@ -1,5 +1,5 @@
-# MERN
-MERN Stack - Social media app (instagram, facebook, twitter clone)  MERN + Redux + Bootstrap 4
+
+# MERN Stack - Social media app (instagram, facebook, twitter clone)  MERN + Redux + Bootstrap 4
 
 
 •	Install dependencies for server 
